@@ -41,24 +41,17 @@ credit-card-fraud-detection/
 ### Local Setup
 
 1. Clone the repository:
-   ```bash
+
    git clone https://github.com/your-username/credit-card-fraud-detection.git
    cd credit-card-fraud-detection
-   ```
-
-````
 
 2. Install dependencies:
-
-   ```bash
+   
    pip install -r requirements.txt
-   ```
 
-3. Run the Streamlit app:
+4. Run the Streamlit app:
 
-   ```bash
    streamlit run app.py
-   ```
 
 ---
 
@@ -85,4 +78,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Author
 
 **Sumita Lakhlan**
-````
+
