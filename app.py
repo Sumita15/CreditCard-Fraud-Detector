@@ -8,18 +8,18 @@ scaler = joblib.load('scaler.pkl')
 
 st.title("Credit Card Fraud Detection")
 
+# Intro and instructions
 st.markdown("""
 🔍 **Detect Fraud in Real-Time!**  
-Enter transaction details or use a known fraud example to test the model.  
-This tool uses 30 key features and a trained ML model to identify suspicious activity.  
-Click **"Check for Fraud"** to get instant results with probability.
+Enter transaction details manually or use a known fraud example to test the model.  
+Click **"Check for Fraud"** to get results.
 
 ⚠️ For demo purposes only.
 """)
 
 st.markdown("### Enter transaction details:")
 
-# Feature names
+# Actual feature names (30 total: Time, V1–V28, Amount)
 feature_names = ['Time'] + [f'V{i}' for i in range(1, 29)] + ['Amount']
 
 # Example fraudulent transaction
@@ -38,7 +38,7 @@ fraud_example = [
 if 'inputs' not in st.session_state:
     st.session_state.inputs = [0.0] * 30
 
-# Fraud example button
+# Button to autofill fraud example
 if st.button("🔍 Use Example Fraud Data"):
     st.session_state.inputs = fraud_example
 
@@ -48,17 +48,15 @@ for i, name in enumerate(feature_names):
     value = st.number_input(name, value=st.session_state.inputs[i], key=name)
     inputs.append(value)
 
-# Predict button
+# Prediction
 if st.button("Check for Fraud"):
     try:
         inputs_scaled = scaler.transform([inputs])
         prediction = model.predict(inputs_scaled)
-        proba = model.predict_proba(inputs_scaled)[0][1]
 
         if prediction[0] == 1:
             st.error("⚠️ Fraudulent Transaction Detected!")
         else:
             st.success("Legitimate Transaction")
-        st.write(f"Fraud Probability: **{proba:.2%}**")
     except Exception as e:
         st.error(f"An error occurred: {e}")
