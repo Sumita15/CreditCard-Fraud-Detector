@@ -57,7 +57,7 @@ credit-card-fraud-detection/
 
 ## Live Demo
 
-[Click here to try the app](https://your-deployed-app-url.streamlit.app)
+[[Click here to try the app]](https://creditcard-fraud-detector.streamlit.app)
 
 ---
 
